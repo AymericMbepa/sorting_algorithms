@@ -3,6 +3,17 @@
 #include "sort.h"
 
 /**
+ * swap - swap to number
+ * @xp: an input integer
+ * @yp: another input integer
+ */
+void swap(int *xp, int *yp)
+{
+	int temp = *xp;
+	*xp = *yp;
+	*yp = temp;
+}
+/**
  * bubble_sort - sorts an array of integers in ascending
  *
  * @array: array to be sorted
@@ -10,7 +21,6 @@
  */
 void bubble_sort(int *array, size_t size)
 {
-	int a = 0;
 	size_t i = 0, j = 0;
 
 	if (array == NULL || size < 2)
@@ -21,9 +31,7 @@ void bubble_sort(int *array, size_t size)
 		{
 			if (array[j] > array[j + 1])
 			{
-				a = array[j + 1];
-				array[j + 1] = array[j];
-				array[j] = a;
+				swap(&array[j], &array[j + 1]);
 				print_array(array, size);
 			}
 		}
