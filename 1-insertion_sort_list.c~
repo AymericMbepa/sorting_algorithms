@@ -1,0 +1,34 @@
+#include "sort.h"
+
+/**
+ * insertion_sort_list - sort a doubly linkedlist in ascending order
+ * @list: an input doubly linked list
+ */
+void insertion_sort_list(listint_s **list)
+{
+	listint_t *node = NULL, *tmp = NULL;
+
+	if (list == NULL || *list == NULL || (*list)->next == NULL)
+		return;
+
+	node = *list;
+	node = node->next;
+	while(node)
+	{
+		tmp = node;
+		if(node->next)
+			(node->next)->prev = tmp->prev;
+		(node->prev)->next = tmp->next;
+		node = node->prev;
+		tmp->prev = node->prev;
+		tmp->next = node;
+		if (node->prev)
+			(node->prev)->next = tmp;
+		node->prev = tmp;
+		if (tmp->prev == NULL)
+			*list = tmp;
+		print_list(*list);
+		node = node->prev;
+	}
+	node = node->next;
+}
